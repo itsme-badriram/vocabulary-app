@@ -1,0 +1,154 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Practice MCQ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="showQuestion">
+    <ion-card-header
+      [ngClass]="{'new-word': currentQuestion.id == 'NEW', 'review': currentQuestion.id == 'REVIEW', 'incorrect': currentQuestion.id == 'INCORRECT' }"
+    >
+      <ion-card-title
+        [ngClass]="{'new-word': currentQuestion.id == 'NEW', 'review': currentQuestion.id == 'REVIEW', 'incorrect': currentQuestion.id == 'INCORRECT' }"
+      >
+        {{currentQuestion.msg}}</ion-card-title
+      >
+      <ion-card-subtitle
+        [ngClass]="{'new-word': currentQuestion.id == 'NEW', 'review': currentQuestion.id == 'REVIEW', 'incorrect': currentQuestion.id == 'INCORRECT' }"
+        >{{currentQuestion.subMsg}}</ion-card-subtitle
+      >
+    </ion-card-header>
+
+    <ion-card-content
+      ><br />
+      <div class="question">
+        <ion-item>
+          <ion-label position="floating"
+            ><b style="font-size: x-large"
+              >{{currentQuestion.display}}</b
+            ></ion-label
+          >
+          <ion-input [(ngModel)]="currentQuestion.result"></ion-input>
+        </ion-item>
+      </div>
+      <!-- <ion-item *ngFor = "let o of currentQuestion.options" lines="full" (click)="onCheckAnswer(o)">
+        <ion-label>
+          {{o}}
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" (click)="onCheckAnswer('Not Sure')">
+        <ion-label>
+          I'm not sure
+        </ion-label>
+      </ion-item> -->
+      <div class="details" *ngIf="currentQuestion.synonyms.length != 0">
+        <div>
+          <b><i>Synonyms</i></b>
+        </div>
+        <ion-text *ngFor="let s of currentQuestion.synonyms; let i=index"
+          ><i>{{s}}</i>
+          <span *ngIf="i != currentQuestion.synonyms.length - 1"
+            ><i>, </i></span
+          >
+        </ion-text>
+      </div>
+      <div class="details" *ngIf="currentQuestion.antonyms.length != 0">
+        <div>
+          <b><i>Antonyms</i></b>
+        </div>
+        <ion-text *ngFor="let s of currentQuestion.antonyms; let i=index"
+          ><i>{{s}}</i>
+          <span *ngIf="i != currentQuestion.antonyms.length - 1"
+            ><i>, </i></span
+          >
+        </ion-text>
+      </div>
+      <div class="button">
+        <ion-button
+          color="light"
+          (click)="onCheckFillups(this.currentQuestion.result)"
+        >
+          Check
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="showAnswer">
+    <ion-card-header
+      [ngClass]="{'new-word': currentAnswer.msg == 'Not Sure', 'review': currentAnswer.msg == 'Correct!', 'incorrect': currentAnswer.msg == 'Incorrect' }"
+    >
+      <ion-card-title
+        [ngClass]="{'new-word': currentAnswer.msg == 'Not Sure', 'review': currentAnswer.msg == 'Correct!', 'incorrect': currentAnswer.msg == 'Incorrect' }"
+        >{{currentAnswer.msg}}</ion-card-title
+      >
+      <ion-card-subtitle
+        [ngClass]="{'new-word': currentAnswer.msg == 'Not Sure', 'review': currentAnswer.msg == 'Correct!', 'incorrect': currentAnswer.msg == 'Incorrect' }"
+        >{{currentAnswer.subMsg}}</ion-card-subtitle
+      >
+    </ion-card-header>
+    <ion-card-content
+      ><br />
+      <div class="question">
+        <b>{{currentQuestion.word}}</b>
+      </div>
+      <ion-item lines="full">
+        <ion-label
+          *ngIf="this.currentQuestion.result === this.currentQuestion.word "
+        >
+          &#10004; {{currentQuestion.result}}
+        </ion-label>
+        <ion-label
+          *ngIf="this.currentQuestion.result != this.currentQuestion.word "
+        >
+          &#10008; {{currentQuestion.result}}
+        </ion-label>
+      </ion-item>
+      <br />
+      <div class="details" *ngIf="currentQuestion.synonyms.length != 0">
+        <div>
+          <b><i>Synonyms</i></b>
+        </div>
+        <ion-text *ngFor="let s of currentQuestion.synonyms; let i=index"
+          ><i>{{s}}</i>
+          <span *ngIf="i != currentQuestion.synonyms.length - 1"
+            ><i>, </i></span
+          >
+        </ion-text>
+      </div>
+      <div class="details" *ngIf="currentQuestion.antonyms.length != 0">
+        <div>
+          <b><i>Antonyms</i></b>
+        </div>
+        <ion-text *ngFor="let s of currentQuestion.antonyms; let i=index"
+          ><i>{{s}}</i>
+          <span *ngIf="i != currentQuestion.antonyms.length - 1"
+            ><i>, </i></span
+          >
+        </ion-text>
+      </div>
+      <div class="button">
+        <ion-button color="light" (click)="onNext()"> Next </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="completed">
+    <ion-card-header>
+      <ion-card-title>Level Completed!</ion-card-title>
+      <ion-card-subtitle
+        >You just completed this level. Great Job :)</ion-card-subtitle
+      >
+    </ion-card-header>
+    <ion-card-content>
+      <div class="button">
+        <ion-button color="success" [routerLink]="['/levels', dbLevel]">
+          Continue
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

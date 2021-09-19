@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="database">Vocab - {{database.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="database">
+  <ion-card *ngFor="let s of database.section" >
+    <ion-card-header>
+      <ion-card-title>{{database.name}} Level {{s.level}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="text"><ion-text>{{s.words.length - s.completed}} / {{s.words.length}} Words</ion-text></div>
+      <ion-progress-bar color="secondary" [value]="getProgressBar(s.words.length - s.completed, s.words.length)"></ion-progress-bar>
+      <div class="button">
+        <ion-button class="btn" color="light" [routerLink]="['/questions',database.level, s.level ]">
+          {{getButtonState(s.words.length - s.completed, s.words.length)}}
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  </ion-content>
+

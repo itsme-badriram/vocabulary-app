@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'levels/:dblevel',
+    loadChildren: () => import('./levels/levels.module').then( m => m.LevelsPageModule)
+  },
+  {
+    path: 'questions/:dblevel/:level',
+    loadChildren: () => import('./questions/questions.module').then( m => m.QuestionsPageModule)
+  },
 ];
 
 @NgModule({

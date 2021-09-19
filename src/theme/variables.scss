@@ -2,6 +2,28 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+ion-progress-bar {
+    --progress-background: #663399;
+  }
+  ion-progress-bar {
+    height: 12px;
+  }
+ion-title {
+  color: white;
+}
+ion-back-button {
+  color: white;
+}
+ion-toolbar{
+  --ion-background-color:#282C35;
+}
+ion-content{
+  --ion-background-color:#663399;
+}
+ion-card {
+  --ion-background-color:white;
+}
+
 :root {
   /** primary **/
   --ion-color-primary: #3880ff;
@@ -75,13 +97,34 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
-
+@font-face{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../assets/Open_Sans/OpenSans-Regular.ttf')
+}
+@font-face{
+  font-family: 'Open Sans';
+  font-style: semi-bold;
+  font-weight: 700;
+  src: url('../assets/Open_Sans/OpenSans-SemiBold.ttf')
+}
+@font-face{
+  font-family: 'Open Sans';
+  font-style: bold;
+  font-weight: 800;
+  src: url('../assets/Open_Sans/OpenSans-Bold.ttf')
+}
+$font-family-base: "Open Sans";
+* {
+  font-family: "Open Sans" !important;
+  font-weight: 550 !important
+}
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
    * -------------------------------------------
    */
-
   body {
     --ion-color-primary: #428cff;
     --ion-color-primary-rgb: 66,140,255;

@@ -1,0 +1,32 @@
+.question {
+  font-size: xx-large;
+}
+.details {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.item-has-focus {
+  --highlight-background: #282c35;
+}
+.button {
+  margin-top: 8px;
+}
+ion-card-header {
+  text-align: center;
+}
+.review {
+  background-color: rgb(230, 255, 236);
+  color: rgb(47, 176, 122);
+}
+.new-word {
+  background-color: rgb(238, 238, 238);
+  color: rgb(139, 139, 141);
+}
+
+.incorrect {
+  background-color: rgb(246, 214, 215);
+  color: rgb(211, 91, 98);
+}
+b {
+  color: black;
+}

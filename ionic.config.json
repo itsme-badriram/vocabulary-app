@@ -1,5 +1,7 @@
 {
   "name": "vocab",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
